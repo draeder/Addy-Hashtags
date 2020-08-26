@@ -159,6 +159,7 @@ Or by sharing this link:
         b.on("seen", function(address) {
             let addys = allStorage()
             b.send(addys);
+            console.log("User joined!")
         // e.g. send a message to the client we've seen with this address
         });
     })
