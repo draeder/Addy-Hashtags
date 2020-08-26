@@ -107,16 +107,16 @@ Or by sharing this link:
     }
     let linkTyping = document.getElementById("link")
     linkTyping.addEventListener("keyup", event => {
-        if(event.key == "h"){
-            linkTyping.value = "https://"
-            lynkTyping.removeEventListener("keyup")
-        }
         if(event.key == "Enter"){
             let hash = document.getElementById("hash").value
             let link = document.getElementById("link").value 
             if(hash && link){
                 save()
             }
+        }
+        if(event.key == "h"){
+            linkTyping.value = "https://"
+            lynkTyping.removeEventListener("keyup")
         }
     })
 
