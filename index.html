@@ -148,7 +148,10 @@ Or by sharing this link:
 
         //localStorage["bugout-server-seed"] = b.seed;
         b.on("message", function(address, message) {
-            console.log("message from", address, "is", message);
+            console.log("message from", address, "is", message)
+            if(message.length > 0){
+                console.log("got some stuff to share!")
+            }
         });
 
 
