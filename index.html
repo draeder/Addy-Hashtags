@@ -154,7 +154,6 @@ Or by sharing this link:
 
         b.on("message", (address, message) => {
             addHashLink(message)
-            console.log(localStorage)
         });
 
         b.on("seen", (address) => {
@@ -164,6 +163,8 @@ Or by sharing this link:
 
         window.onstorage = () => {
             b.send("Got an updated #hashlink")
+            let message = allStorage()
+            b.send(message)
         }
 
         function addHashLink(message){
@@ -172,6 +173,7 @@ Or by sharing this link:
                     localStorage.setItem(element.key, element.value)
                 })
                 console.log("#Hashlinks synced!")
+                console.log("Recieved: " + message)
                 document.getElementById("sync").innerText = "(#Hashlinks synced!)"
             } else {
                 console.log(message)
