@@ -154,7 +154,7 @@ Or by sharing this link:
 
         b.on("message", (address, message) => {
             addHashLink(message)
-            console.log(...localStorage)
+            console.log(localStorage)
         });
 
         b.on("seen", (address) => {
@@ -163,7 +163,6 @@ Or by sharing this link:
         })
 
         window.onstorage = () => {
-            console.log(...localStorage)
             b.send("Got an updated #hashlink")
         }
 
