@@ -134,7 +134,9 @@ Or by sharing this link:
     console.log(bugout)
 
     var b = new Bugout(bugout || {seed: localStorage.getItem("bugout-server-seed")})
-    localStorage.setItem("address", b.address())
+    if(!localStorage.getItem("address")){
+        localStorage.setItem("address", b.address())
+    }
 
     let shareAddy = `${address}?b=${b.address()}`
     document.getElementById("share-link").innerHTML = `<a href="${shareAddy}">${shareAddy}</a>`
