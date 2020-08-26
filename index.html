@@ -55,6 +55,8 @@ devices by scanning this QR code:
     let loc = window.location
     let hash = loc.hash;
     let url = params.get("url")
+    let path = loc.path
+    console.log(path)
     if(url != null){
         localStorage.setItem(hash, url)
     }
