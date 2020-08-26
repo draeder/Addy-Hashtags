@@ -99,6 +99,7 @@ Or by sharing this link:
         if (regEx.test(url)) {
             document.body.innerHTML = 
             `<pre>Redirecting to <span style='color: red'>${url}"</span>  . . .</pre>`
+            debugger
             location.replace(url)
             return url
         } else {
