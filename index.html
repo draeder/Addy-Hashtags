@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    <title>Addy Hashtags</title>
 <head>
 </head>
 <style>
@@ -63,12 +64,12 @@ Or by sharing this link:
         url = checkUrl(url)
         localStorage.setItem(hash, url)
     }
-    let link = localStorage.getItem(hash)
-    if(link != null){
+    if(hash){
+        let link = localStorage.getItem(hash)
+        link = checkUrl(link)
         document.body.innerHTML = 
         `<pre>Redirecting to <span style='color: red'>${link}"</span> using <span style='color: blue'>${hash}</span>  . . .</pre>`
         location.replace(link)
-
     }
     let button = document.getElementById("go")
     button.addEventListener("click", () => {
