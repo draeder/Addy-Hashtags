@@ -162,7 +162,7 @@ Or by sharing this link:
         })
 
         window.onstorage = () => {
-            console.log(JSON.parse(window.localStorage.getItem('sampleList')))
+            console.log(localStorage)
             b.send("Got an updated #hashlink")
         }
 
