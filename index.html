@@ -106,6 +106,7 @@ Or by sharing this link:
         }
     }
     let linkTyping = document.getElementById("link")
+    let h = "0"
     linkTyping.addEventListener("keyup", event => {
         if(event.key == "Enter"){
             let hash = document.getElementById("hash").value
@@ -114,9 +115,9 @@ Or by sharing this link:
                 save()
             }
         }
-        if(event.key == "h"){
+        if(event.key == "h" && h == 0){
             linkTyping.value = "https://"
-            this.removeEventListener("keyup")
+            h = 1
         }
     })
 
