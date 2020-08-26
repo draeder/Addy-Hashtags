@@ -111,8 +111,6 @@ Or by sharing this link:
             let link = document.getElementById("link").value 
             if(hash && link){
                 save()
-            } else {
-                console.log("No values to save")
             }
         }
     })
@@ -127,15 +125,12 @@ Or by sharing this link:
                 archive.push( {key: key,value: localStorage.getItem(key)})
             }
         }
-        console.log(archive)
         return archive
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
         let site = "https://www.addy.pw"
         let bugout = params.get("b")
-
-        console.log(bugout)
 
         //var b = new Bugout(bugout || {seed: localStorage.getItem("bugout-server-seed")})
         let address = localStorage.getItem("address")
@@ -151,28 +146,17 @@ Or by sharing this link:
         document.getElementById("share-link").innerHTML = `<a href="${shareAddy}">${shareAddy}</a>`
         document.getElementById("share-qr").innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${shareAddy}">`
 
-        //localStorage["bugout-server-seed"] = b.seed;
         b.on("message", (address, message) => {
-            console.log("message from", address, "is", message)
             if(message.length > 0){
-                console.log("got some stuff to share!")
                 message.forEach( (element, index) => {
-                    console.log(element.key)
                     localStorage.setItem(element.key, element.value)
-                    //console.log(element[index].key)
                 });
             }
         });
 
-        // send an encrypted message to a specific client
-        //b.send(clientaddress, "Hello!");
-
-        // whenever we see a new client in this swarm
         b.on("seen", (address) => {
             let addys = allStorage()
             b.send(addys);
-            console.log("User joined!")
-        // e.g. send a message to the client we've seen with this address
         });
     })
 
