@@ -64,12 +64,13 @@ Or by sharing this link:
         url = checkUrl(url)
         localStorage.setItem(hash, url)
     }
-    if(hash){
+    if(hash && !url){
         let link = localStorage.getItem(hash)
-        link = checkUrl(link)
-        document.body.innerHTML = 
-        `<pre>Redirecting to <span style='color: red'>${link}"</span> using <span style='color: blue'>${hash}</span>  . . .</pre>`
-        location.replace(link)
+        if(link != false){
+            link = checkUrl(link)
+        } else {
+            alert("no link")
+        }
     }
     let button = document.getElementById("go")
     button.addEventListener("click", () => {
@@ -78,13 +79,15 @@ Or by sharing this link:
         link = checkUrl(link)    
         if(hash && link != false){
             localStorage.setItem(hash, link)
-            location.replace(link)
         }
     })
     function checkUrl(url){
         let regEx = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/gm;
 
         if (regEx.test(url)) {
+            document.body.innerHTML = 
+            `<pre>Redirecting to <span style='color: red'>${url}"</span> using <span style='color: blue'>${hash}</span>  . . .</pre>`
+            location.replace(url)
             return url
         } else {
             alert("Please enter a complete url! (e.g. https://www.example.com)")
