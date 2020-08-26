@@ -145,7 +145,7 @@ Or by sharing this link:
 
         let shareAddy = `${site}?b=${address}`
         document.getElementById("share-link").innerHTML = `<a href="${shareAddy}">${shareAddy}</a>`
-        document.getElementById("share-qr").innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${shareAddy}/>"
+        document.getElementById("share-qr").innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${shareAddy}/>"`
 
         //localStorage["bugout-server-seed"] = b.seed;
         b.on("message", (address, message) => {
