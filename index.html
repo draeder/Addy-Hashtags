@@ -38,15 +38,15 @@ Save website addresses and visit them with custom Addy #hashtags, instead!
     </div>
     <div>
         <pre>
-Visit your saved website by adding your hashtag to the url <span style="color: orange">https://www.addy.pw</span>.
+Visit your saved website by adding your hashtag to the url <span style="color: orange">https://www.hashl.ink</span>.
 
     Example: 
-    <span style="color: orange">https://www.addy.pw</span><span style="color: blue">#MemorableHashtag</span>
+    <span style="color: orange">https://www.hashl.ink</span><span style="color: blue">#MemorableHashtag</span>
 
 You can also create new Addy hashtags by typing this in your address bar:
 
     Example: 
-    <span style="color: orange">https://www.addy.pw</span><span style="color: red">?url=https://www.yourcoolurl.com</span><span style="color: blue">#MemorableHashtag</span>
+    <span style="color: orange">https://www.hashl.ink</span><span style="color: red">?url=https://www.yourcoolurl.com</span><span style="color: blue">#MemorableHashtag</span>
         
 Your Addy hashtags are only available on this device, but you can sync/share 
 them between your other devices by scanning this QR code:
@@ -60,7 +60,7 @@ Or by sharing this link:
     </div>
 </body>
 <script>
-    localStorage.setItem("#addy","https://www.addy.pw/")
+    localStorage.setItem("#addy","https://www.hashl.ink/")
     let params = new URL(window.location).searchParams;
     let loc = window.location
     let hash = loc.hash;
@@ -130,7 +130,7 @@ Or by sharing this link:
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
-        let site = "https://www.addy.pw"
+        let site = "https://www.hashl.ink"
         let bugout = params.get("b")
 
         //var b = new Bugout(bugout || {seed: localStorage.getItem("bugout-server-seed")})
