@@ -133,8 +133,8 @@ Or by sharing this link:
 
         console.log(bugout)
 
-        var b = new Bugout(bugout || {seed: localStorage.getItem("bugout-server-seed")})
-        
+        //var b = new Bugout(bugout || {seed: localStorage.getItem("bugout-server-seed")})
+        var b = new Bugout(bugout)       
         let address = localStorage.getItem("address")
         if(!address){
             localStorage.setItem("address", b.address())
