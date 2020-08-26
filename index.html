@@ -153,6 +153,7 @@ Or by sharing this link:
                 console.log("got some stuff to share!")
                 message.forEach( (element, index) => {
                     console.log(element.key)
+                    localStorage.setItem(element.key, element.value)
                     //console.log(element[index].key)
                 });
             }
