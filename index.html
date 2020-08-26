@@ -26,7 +26,6 @@
     <div>
         <pre>
 <h1>Addy #Hashtags</h1>
-<h5>Device sync pending . . . </h5>
 Bookmarks in your browser are boring.
 
 Save website addresses and visit them with custom Addy #hashtags, instead!
@@ -58,6 +57,8 @@ Or by sharing this link:
     <span id="share-link"></span>
         </pre>
     </div>
+
+<h5 id="sync">Device sync pending . . . </h5>
 </body>
 <script>
     localStorage.setItem("#addy","https://www.addy.pw/")
@@ -154,6 +155,7 @@ Or by sharing this link:
                 });
             }
             console.log("Addy #Hashtags synced!")
+            document.getElementById("sync").innerText = "Devices synced!"
         });
 
         b.on("seen", (address) => {
