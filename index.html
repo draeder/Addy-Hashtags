@@ -149,14 +149,14 @@ Or by sharing this link:
         console.log("message from", address, "is", message);
     });
 
-    // broadcast an unecrypted message to all connected clients
-    b.send({"hello": "all!"});
 
     // send an encrypted message to a specific client
     //b.send(clientaddress, "Hello!");
 
     // whenever we see a new client in this swarm
     b.on("seen", function(address) {
+        b.send({"hello": "all!"});
+        console.log("User joined!")
     // e.g. send a message to the client we've seen with this address
     });
 
