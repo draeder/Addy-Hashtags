@@ -163,7 +163,11 @@ Or by sharing this link:
         b.on("seen", (address) => {
             let addys = allStorage()
             b.send(address, addys);
-        });
+        })
+
+        window.onstorage = () => {
+            console.log(JSON.parse(window.localStorage.getItem('sampleList')))
+        }
     })
 
 </script>
