@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <title>Addy Hashtags</title>
 <head>
+    <title>Addy Hashtags</title>
+    <script src="https://chr15m.github.io/bugout/bugout.min.js"></script>
 </head>
 <style>
     body {
@@ -18,7 +19,7 @@
         font-size: 1em;
     }
     input {
-        width: 65vw;
+        width: 400px;
     }
 </style>
 <body>
@@ -46,10 +47,11 @@ You can also create new addy hashtags by typing this in your address bar:
     Example: 
     <span style="color: orange">https://www.addy.pw</span><span style="color: red">?url=https://www.yourcoolurl.com</span><span style="color: blue">#MemorableHashtag</span>
         
-Your addy hashtags are only accessibly from this device, but you can sync/share them between 
-devices by scanning this QR code:
-
-Or by sharing this link: 
+Your addy hashtags are only accessibly from this device, but you can sync/share 
+them between devices by scanning this QR code:
+            <span id="share-qr"></span>
+Or by sharing this link:
+            <span id="share-link"></span>
         </pre>
     </div>
 </body>
@@ -58,8 +60,7 @@ Or by sharing this link:
     let loc = window.location
     let hash = loc.hash;
     let url = params.get("url")
-    let path = loc.path
-    console.log(path)
+
     if(url && hash){
         url = checkUrl(url)
         if(url){
@@ -74,19 +75,22 @@ Or by sharing this link:
     }
     let button = document.getElementById("go")
     button.addEventListener("click", () => {
+        save()
+    })
+    function save(){
         let hash = document.getElementById("hash").value
         let link = document.getElementById("link").value 
         link = checkUrl(link)    
         if(hash && link){
             localStorage.setItem(hash, link)
         }
-    })
+    }
     function checkUrl(url){
         let regEx = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/gm;
 
         if (regEx.test(url)) {
             document.body.innerHTML = 
-            `<pre>Redirecting to <span style='color: red'>${url}"</span> using <span style='color: blue'>${hash}</span>  . . .</pre>`
+            `<pre>Redirecting to <span style='color: red'>${url}"</span>  . . .</pre>`
             location.replace(url)
             return url
         } else {
@@ -95,10 +99,62 @@ Or by sharing this link:
     }
     let linkTyping = document.getElementById("link")
     linkTyping.addEventListener("keyup", event => {
-        console.log(` ${event.key}`)
         if(event.key == "h"){
             linkTyping.value = "https://"
         }
+        if(event.key == "Enter"){
+            let hash = document.getElementById("hash").value
+            let link = document.getElementById("link").value 
+            if(hash && link){
+                save()
+            } else {
+                console.log("No values to save")
+            }
+        }
     })
+
+    function allStorage() {
+        var archive = [],
+        keys = Object.keys(localStorage),
+        i = 0, key
+
+        for (; key = keys[i]; i++) {
+            if(key.charAt(0) == "#"){
+                archive.push( [{key: key,value: localStorage.getItem(key)}])
+            }
+        }
+        console.log(archive)
+        return archive
+    }
+    allStorage()
+
+    let address = "https://www.addy.pw"
+    let bugout = params.get("b")
+
+    console.log(bugout)
+
+    var b = new Bugout(bugout || {seed: localStorage.getItem("bugout-server-seed")})
+    localStorage.setItem("address", b.address())
+
+    let shareAddy = `${address}?b=${b.address()}`
+    document.getElementById("share-link").innerHTML = `<a href="${shareAddy}">${shareAddy}</a>`
+
+    localStorage["bugout-server-seed"] = b.seed;
+    b.on("message", function(address, message) {
+        console.log("message from", address, "is", message);
+    });
+
+    // broadcast an unecrypted message to all connected clients
+    b.send({"hello": "all!"});
+
+    // send an encrypted message to a specific client
+    //b.send(clientaddress, "Hello!");
+
+    // whenever we see a new client in this swarm
+    b.on("seen", function(address) {
+    // e.g. send a message to the client we've seen with this address
+    });
+
+
 </script>
 </html>
