@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+    body {
+        display: grid;
+        height: 100vh;
+        margin: 0;
+        place-items: center center;
+    }
+    div input{
+        display: block
+    }
+    pre {
+        font-family: Consolas,monospace;
+        font-size: 1em;
+    }
+    input {
+        width: 65vw;
+    }
+</style>
+<body>
+    <div>
+        <pre>
+<h1>#Hashtag your bookmarks!</h1>
+
+Save website addresses and easily visit them using a #hashtag of your choice . . .
+        </pre>
+    </div>
+    <div>
+        <input type="text" placeholder="#hashtag"><br>
+        <input type="text" placeholder="https://www.google.com"><br>
+        <button id="go">Save and Go!</button>
+    </div>
+    <div>
+        <pre>
+Easily access your saved website by adding your hashtag to the url https://www.addy.pw.
+
+    Example: 
+    https://www.addy.pw<span style="color: blue">#MemorableHashtag</span>
+
+You can also create new addy hashtags by typing this in your address bar:
+
+    Example: 
+    https://www.addy.pw<span style="color: red">?url=www.yourcoolurl.com</span><span style="color: blue">#MemorableHashtag</span>
+        
+Your addy hashtags are only stored on your device, but you can sync them between 
+devices by scanning this QR code:
+        </pre>
+    </div>
+</body>
+<script>
+    let params = new URL(window.location).searchParams;
+    let loc = window.location
+    let hash = loc.hash;
+    let url = params.get("url")
+    if(url != null){
+        localStorage.setItem(hash, url)
+    }
+    let link = localStorage.getItem(hash)
+    if(link != null){
+        document.body.innerHTML = "<pre>Redirecting you to <span style='color: red'>" + link + "</span> using <span style='color: blue'>" + hash + "</span> in 3 seconds . . .</pre> <br><pre><a onclick='disableTimeout()' href='#'>Click to disable redirect timeout</a></pre>"
+        let timeout = localStorage.getItem("timeout")
+        if(!timeout){
+            timeout = 3000;
+        }
+        setTimeout(function(){
+            location.replace("http://"+link)
+        }, timeout)
+    }
+    function disableTimeout(){
+        localStorage.setItem("timeout", "0")
+        location.replace("http://"+link)
+    }
+</script>
+</html>
