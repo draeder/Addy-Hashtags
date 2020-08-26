@@ -120,7 +120,7 @@ Or by sharing this link:
 
         for (; key = keys[i]; i++) {
             if(key.charAt(0) == "#"){
-                archive.push( [{key: key,value: localStorage.getItem(key)}])
+                archive.push( {key: key,value: localStorage.getItem(key)})
             }
         }
         console.log(archive)
