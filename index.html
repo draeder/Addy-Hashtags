@@ -127,39 +127,39 @@ Or by sharing this link:
         return archive
     }
     allStorage()
+    document.addEventListener('DOMContentLoaded', async () => {
+        let site = "https://www.addy.pw"
+        let bugout = params.get("b")
 
-    let site = "https://www.addy.pw"
-    let bugout = params.get("b")
+        console.log(bugout)
 
-    console.log(bugout)
+        var b = new Bugout(bugout || {seed: localStorage.getItem("bugout-server-seed")})
+        
+        let address = localStorage.getItem("address")
+        if(!address){
+            localStorage.setItem("address", b.address())
+            address = b.address()
+        }
 
-    var b = new Bugout(bugout || {seed: localStorage.getItem("bugout-server-seed")})
-    
-    let address = localStorage.getItem("address")
-    if(!address){
-        localStorage.setItem("address", b.address())
-        address = b.address()
-    }
+        let shareAddy = `${site}?b=${address}`
+        document.getElementById("share-link").innerHTML = `<a href="${shareAddy}">${shareAddy}</a>`
 
-    let shareAddy = `${site}?b=${address}`
-    document.getElementById("share-link").innerHTML = `<a href="${shareAddy}">${shareAddy}</a>`
-
-    localStorage["bugout-server-seed"] = b.seed;
-    b.on("message", function(address, message) {
-        console.log("message from", address, "is", message);
-    });
+        localStorage["bugout-server-seed"] = b.seed;
+        b.on("message", function(address, message) {
+            console.log("message from", address, "is", message);
+        });
 
 
-    // send an encrypted message to a specific client
-    //b.send(clientaddress, "Hello!");
+        // send an encrypted message to a specific client
+        //b.send(clientaddress, "Hello!");
 
-    // whenever we see a new client in this swarm
-    b.on("seen", function(address) {
-        b.send({"hello": "all!"});
-        console.log("User joined!")
-    // e.g. send a message to the client we've seen with this address
-    });
-
+        // whenever we see a new client in this swarm
+        b.on("seen", function(address) {
+            b.send({"hello": "all!"});
+            console.log("User joined!")
+        // e.g. send a message to the client we've seen with this address
+        });
+    })
 
 </script>
 </html>
