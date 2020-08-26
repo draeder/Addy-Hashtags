@@ -155,9 +155,11 @@ Or by sharing this link:
                 message.forEach( (element, index) => {
                     localStorage.setItem(element.key, element.value)
                 });
+                console.log("#Hashlinks synced!")
+                document.getElementById("sync").innerText = "(#Hashlinks synced!)"
+            } else {
+                console.log(message)
             }
-            console.log("#Hashlinks synced!")
-            document.getElementById("sync").innerText = "(#Hashlinks synced!)"
         });
 
         b.on("seen", (address) => {
@@ -167,6 +169,7 @@ Or by sharing this link:
 
         window.onstorage = () => {
             console.log(JSON.parse(window.localStorage.getItem('sampleList')))
+            b.send("Got an updated #hashlink")
         }
     })
 
