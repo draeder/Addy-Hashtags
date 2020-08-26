@@ -158,7 +158,7 @@ Or by sharing this link:
 
         b.on("seen", (address) => {
             let addys = allStorage()
-            b.send(addys);
+            b.send(address, addys);
         });
     })
 
