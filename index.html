@@ -146,7 +146,7 @@ Or by sharing this link:
         let shareAddy = `${site}?b=${address}`
         document.getElementById("share-link").innerHTML = `<a href="${shareAddy}">${shareAddy}</a>`
 
-        localStorage["bugout-server-seed"] = b.seed;
+        //localStorage["bugout-server-seed"] = b.seed;
         b.on("message", function(address, message) {
             console.log("message from", address, "is", message);
         });
