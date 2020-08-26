@@ -99,7 +99,6 @@ Or by sharing this link:
         if (regEx.test(url)) {
             document.body.innerHTML = 
             `<pre>Redirecting to <span style='color: red'>${url}"</span>  . . .</pre>`
-            debugger
             location.replace(url)
             return url
         } else {
@@ -163,7 +162,6 @@ Or by sharing this link:
         })
 
         window.onstorage = () => {
-            b.send("Got an updated #hashlink")
             let message = allStorage()
             b.send(message)
         }
@@ -174,7 +172,6 @@ Or by sharing this link:
                     localStorage.setItem(element.key, element.value)
                 })
                 console.log("#Hashlinks synced!")
-                console.log("Recieved: " + message)
                 document.getElementById("sync").innerText = "(#Hashlinks synced!)"
             } else {
                 console.log(message)
