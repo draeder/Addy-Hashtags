@@ -29,8 +29,8 @@ Save website addresses and easily visit them using a #hashtag of your choice . .
         </pre>
     </div>
     <div>
-        <input type="text" placeholder="#hashtag"><br>
-        <input type="text" placeholder="https://www.google.com"><br>
+        <input id="hash" type="text" placeholder="#hashtag"><br>
+        <input id="link" type="text" placeholder="https://www.google.com"><br>
         <button id="go">Save and Go!</button>
     </div>
     <div>
@@ -60,18 +60,20 @@ devices by scanning this QR code:
     }
     let link = localStorage.getItem(hash)
     if(link != null){
-        document.body.innerHTML = "<pre>Redirecting you to <span style='color: red'>" + link + "</span> using <span style='color: blue'>" + hash + "</span> in 3 seconds . . .</pre> <br><pre><a onclick='disableTimeout()' href='#'>Click to disable redirect timeout</a></pre>"
-        let timeout = localStorage.getItem("timeout")
-        if(!timeout){
-            timeout = 3000;
+        document.body.innerHTML = 
+        `<pre>Redirecting to <span style='color: red'>${link}"</span> using <span style='color: blue'>${hash}</span>  . . .</pre>`
+        debugger
+        location.replace(link)
+
+    }
+    let button = document.getElementById("go")
+    button.addEventListener("click", () => {
+        let hash = document.getElementById("hash").value
+        let link = document.getElementById("link").value        
+        if(hash && link){
+            localStorage.setItem(hash, link)
+            location.replace(link)
         }
-        setTimeout(function(){
-            location.replace("http://"+link)
-        }, timeout)
-    }
-    function disableTimeout(){
-        localStorage.setItem("timeout", "0")
-        location.replace("http://"+link)
-    }
+    })
 </script>
 </html>
