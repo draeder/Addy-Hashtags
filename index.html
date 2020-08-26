@@ -151,15 +151,7 @@ Or by sharing this link:
         document.getElementById("share-qr").innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${shareAddy}">`
 
         b.on("message", (address, message) => {
-            if(Array.isArray(message) && message.length > 0){
-                message.forEach( (element, index) => {
-                    localStorage.setItem(element.key, element.value)
-                });
-                console.log("#Hashlinks synced!")
-                document.getElementById("sync").innerText = "(#Hashlinks synced!)"
-            } else {
-                console.log(message)
-            }
+            addHashLink(message)
         });
 
         b.on("seen", (address) => {
@@ -171,6 +163,19 @@ Or by sharing this link:
             console.log(JSON.parse(window.localStorage.getItem('sampleList')))
             b.send("Got an updated #hashlink")
         }
+
+        function addHashLink(message){
+            if(Array.isArray(message) && message.length > 0){
+                message.forEach( (element, index) => {
+                    localStorage.setItem(element.key, element.value)
+                })
+                console.log("#Hashlinks synced!")
+                document.getElementById("sync").innerText = "(#Hashlinks synced!)"
+            } else {
+                console.log(message)
+            }
+        }
+
     })
 
 </script>
