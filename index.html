@@ -62,14 +62,14 @@ Or by sharing this link:
     console.log(path)
     if(url && hash){
         url = checkUrl(url)
-        localStorage.setItem(hash, url)
+        if(url){
+            localStorage.setItem(hash, url)
+        }
     }
     if(hash && !url){
         let link = localStorage.getItem(hash)
-        if(link != false){
+        if(link){
             link = checkUrl(link)
-        } else {
-            alert("no link")
         }
     }
     let button = document.getElementById("go")
@@ -77,7 +77,7 @@ Or by sharing this link:
         let hash = document.getElementById("hash").value
         let link = document.getElementById("link").value 
         link = checkUrl(link)    
-        if(hash && link != false){
+        if(hash && link){
             localStorage.setItem(hash, link)
         }
     })
@@ -90,9 +90,7 @@ Or by sharing this link:
             location.replace(url)
             return url
         } else {
-            alert("Please enter a complete url! (e.g. https://www.example.com)")
-            link = false
-            return link
+            //alert("Please enter a complete url! (e.g. https://www.example.com)")
         }
     }
 
