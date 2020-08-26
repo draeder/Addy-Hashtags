@@ -36,15 +36,15 @@ Save website addresses and easily visit them using your custom #hashtags . . .
     </div>
     <div>
         <pre>
-Visit your saved website by adding your hashtag to the url https://www.addy.pw.
+Visit your saved website by adding your hashtag to the url <span style="color: orange">https://www.addy.pw</span>.
 
     Example: 
-    https://www.addy.pw<span style="color: blue">#MemorableHashtag</span>
+    <span style="color: orange">https://www.addy.pw</span><span style="color: blue">#MemorableHashtag</span>
 
 You can also create new addy hashtags by typing this in your address bar:
 
     Example: 
-    https://www.addy.pw<span style="color: red">?url=www.yourcoolurl.com</span><span style="color: blue">#MemorableHashtag</span>
+    <span style="color: orange">https://www.addy.pw</span><span style="color: red">?url=https://www.yourcoolurl.com</span><span style="color: blue">#MemorableHashtag</span>
         
 Your addy hashtags are only accessibly from this device, but you can sync/share them between 
 devices by scanning this QR code:
@@ -93,6 +93,12 @@ Or by sharing this link:
             //alert("Please enter a complete url! (e.g. https://www.example.com)")
         }
     }
-
+    let linkTyping = document.getElementById("link")
+    linkTyping.addEventListener("keyup", event => {
+        console.log(` ${event.key}`)
+        if(event.key == "h"){
+            linkTyping.value = "https://"
+        }
+    })
 </script>
 </html>
