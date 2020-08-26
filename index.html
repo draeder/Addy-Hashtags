@@ -151,7 +151,9 @@ Or by sharing this link:
             console.log("message from", address, "is", message)
             if(message.length > 0){
                 console.log("got some stuff to share!")
-                message.forEach(element => console.log(element));
+                message.forEach(element => {
+                    console.log(element.key)
+                });
             }
         });
 
