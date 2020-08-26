@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Addy Hashtags</title>
+    <title>#hashl.ink</title>
     <script src="https://chr15m.github.io/bugout/bugout.min.js"></script>
 </head>
 <style>
@@ -28,7 +28,7 @@
 <h1>Addy #Hashtags</h1>
 Bookmarks in your browser are boring.
 
-Save website addresses and visit them with custom Addy #hashtags, instead!
+Save website addresses and visit them with custom #Hashlinks, instead!
         </pre>
     </div>
     <div>
@@ -41,14 +41,14 @@ Save website addresses and visit them with custom Addy #hashtags, instead!
 Visit your saved website by adding your hashtag to the url <span style="color: orange">https://www.hashl.ink</span>.
 
     Example: 
-    <span style="color: orange">https://www.hashl.ink</span><span style="color: blue">#MemorableHashtag</span>
+    <span style="color: orange">https://www.hashl.ink</span><span style="color: blue">#Hashlink</span>
 
-You can also create new Addy hashtags by typing this in your address bar:
+You can also create new #Hashlinks by typing this in your address bar:
 
     Example: 
-    <span style="color: orange">https://www.hashl.ink</span><span style="color: red">?url=https://www.yourcoolurl.com</span><span style="color: blue">#MemorableHashtag</span>
+    <span style="color: orange">https://www.hashl.ink</span><span style="color: red">?url=https://www.yourcoolurl.com</span><span style="color: blue">#Hashlink</span>
         
-Your Addy hashtags are only available on this device, but you can sync/share 
+Your #Hashlinks are only available on this device, but you can sync/share 
 them between your other devices by scanning this QR code:
 
     <span id="share-qr"></span>
@@ -60,7 +60,7 @@ Or by sharing this link:
     </div>
 </body>
 <script>
-    localStorage.setItem("#addy","https://www.hashl.ink/")
+    localStorage.setItem("#Hashlink","https://www.hashl.ink/")
     let params = new URL(window.location).searchParams;
     let loc = window.location
     let hash = loc.hash;
@@ -153,7 +153,7 @@ Or by sharing this link:
                     localStorage.setItem(element.key, element.value)
                 });
             }
-            console.log("Addy #Hashtags synced!")
+            console.log("#Hashlinks synced!")
             document.getElementById("sync").innerText = "(Devices synced!)"
         });
 
