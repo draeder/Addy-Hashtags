@@ -147,13 +147,13 @@ Or by sharing this link:
         document.getElementById("share-link").innerHTML = `<a href="${shareAddy}">${shareAddy}</a>`
 
         //localStorage["bugout-server-seed"] = b.seed;
-        b.on("message", function(address, message) {
+        b.on("message", (address, message) => {
             console.log("message from", address, "is", message)
             if(message.length > 0){
                 console.log("got some stuff to share!")
-                message.forEach((element, index) => {
+                message.forEach( (element, index) => {
                     console.log(index)
-                    console.log(element[index].key)
+                    console.log(element[1].key)
                 });
             }
         });
@@ -163,7 +163,7 @@ Or by sharing this link:
         //b.send(clientaddress, "Hello!");
 
         // whenever we see a new client in this swarm
-        b.on("seen", function(address) {
+        b.on("seen", (address) => {
             let addys = allStorage()
             b.send(addys);
             console.log("User joined!")
