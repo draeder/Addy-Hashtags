@@ -128,17 +128,20 @@ Or by sharing this link:
     }
     allStorage()
 
-    let address = "https://www.addy.pw"
+    let site = "https://www.addy.pw"
     let bugout = params.get("b")
 
     console.log(bugout)
 
     var b = new Bugout(bugout || {seed: localStorage.getItem("bugout-server-seed")})
-    if(!localStorage.getItem("address")){
+    
+    let address = localStorage.getItem("address")
+    if(!address){
         localStorage.setItem("address", b.address())
+        address = b.address()
     }
 
-    let shareAddy = `${address}?b=${b.address()}`
+    let shareAddy = `${site}?b=${address}`
     document.getElementById("share-link").innerHTML = `<a href="${shareAddy}">${shareAddy}</a>`
 
     localStorage["bugout-server-seed"] = b.seed;
